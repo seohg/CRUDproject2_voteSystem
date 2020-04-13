@@ -277,15 +277,15 @@ void list_vote()
 {
     printf("All Vote.\n");
     int size = V_count();
-    T_user *all_vote[MAX_USER];
+    T_vote *all_vote[MAX_USER];
     v_get_all(all_vote);
     for (int i = 0; i < size; i++)
     {
-        T_user *p = all_vote[i];
+        T_vote *p = all_vote[i];
         printf("%d. %s / 선택지 %d개\n", i + 1, v_getname(p), v_getamount(p));
         for (int i = 0; i < v_getamount(p); i++)
         {
-            printf("\t(%d) %s\n", i + 1, v_getchoice(p, i));
+            printf("\t(%d) %s -> %d표\n", i + 1, v_getchoice(p, i),p->vote_box[i]);
         }
     }
 }
