@@ -295,13 +295,9 @@ void start_vote()
     int size = V_count();
     char name[20];
     int choose;
-    //1. 1개라도 만들어진 투표 주제가 있는지 확인     //list_vote에서 모두다 NULL 일 경우 0 -> break;
-    //2. 유저 이름 입력 받기                   // 만들어져 있는 user인지 확인, 이미 투표한 user인지 확인
-    //3. 투표 주제들 list 나열하기
-    //4. 투표 주제 선택하기
     //5. 투표하기
     //6. 현재 투표된 선택지 현황 전체 정리해서 보여주기     // 각 선택지에 투표된 수만 print한다.(익명) //나중에 실명 모드도 만들기
-    if (size == 0)
+    if (size == 0)  //1개라도 만들어진 투표 주제가 있는지 확인
     {
         printf("Nothing to vote for :(\n");
     }
@@ -332,7 +328,6 @@ void start_vote()
                 choose --;
                 T_vote *p = all_vote[choose];
                 v_start(p, name);
-
             }
             //투표하기
         }
