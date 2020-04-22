@@ -44,7 +44,7 @@ void v_create(char *n, int a) //투표 정보 입력&저장
     int index = v_first_available();
     vote[index] = (T_vote *)malloc(sizeof(T_vote));
     T_vote *p = vote[index];
-    strcpy(p->name, n);
+  strcpy(p->name, n);
     p->amount = a;
     printf("choice >\n");
     for (int i = 0; i < a; i++)

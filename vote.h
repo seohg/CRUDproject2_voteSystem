@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_VOTE 5 // 저장할 수 있는 투표 레코드 최대 갯수
-#define MAX_VOTE_CHOISE 5 //저장할 수 있는 선택지 최대 갯수
+#define MAX_VOTE 50 // 저장할 수 있는 투표 레코드 최대 갯수
+#define MAX_VOTE_CHOISE 10 //저장할 수 있는 선택지 최대 갯수
 typedef struct st_vote
 {
     char name[20]; // 투표 이름

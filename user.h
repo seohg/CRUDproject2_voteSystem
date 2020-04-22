@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_USER 5 // 저장할 수 있는 회원 레코드 최대 갯수
+#define MAX_USER 50 // 저장할 수 있는 회원 레코드 최대 갯수
 
 typedef struct st_user
 {
