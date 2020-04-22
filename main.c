@@ -174,9 +174,8 @@ void read_vote()
     if (v_search_by_name(name) != NULL)
     {
         T_vote *p = v_search_by_name(name);
-        printf("Name > %s\n", v_getname(p));
-        printf("amount > %d\n", v_getamount(p));
-        printf("choise >\n");
+        printf("Name > %s /", v_getname(p));
+        printf(" 선택지 > %d개\n", v_getamount(p));
         for (int i = 0; i < p->amount; i++)
         {
             printf("%d. %s\n", i + 1, v_getchoice(p, i));
