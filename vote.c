@@ -74,7 +74,7 @@ void v_delete(T_vote *p)
     {
         if (vote[i] == p)
         {
-            index = 1;
+            index = i;
             break;
         }
     }
@@ -130,16 +130,18 @@ void v_start(T_vote *p, char name)
     {
         printf("\t(%d) %s\n", i + 1, v_getchoice(p, i));
     }
+    printf("Enter number : ");
     scanf("%d", &choise);
+    choise--;
     p->vote_box[choise]++;
 }
 void v_file_save()
 {
-    char name[20];
+    char name[50];
     char choice[30];
     int vote_box, amount;
     FILE *fp;
-    fp = fopen("txt_file/vote.txt", "r");
+    fp = fopen("txt_file/vote1.txt", "r");
     if (fp == NULL)
     {
         printf("파일 열기 오류");
@@ -152,15 +154,33 @@ void v_file_save()
             vote[index] = (T_vote *)malloc(sizeof(T_vote));
             T_vote *p = vote[index];
 
-            // strcpy(p->name, name);
+            strcpy(p->name, name);
             p->amount = amount;
             for (int i = 0; i < amount; i++)
             {
-                fscanf(fp,"%s %d", choice,&vote_box);
+                fscanf(fp, "%s %d", choice, &vote_box);
                 strcpy(p->choice[i], choice);
                 p->vote_box[i] = vote_box;
-            } 
+            }
             v_count++;
+        }
+    }
+    fclose(fp);
+}
+void v_add_file()
+{
+    FILE *fp = fopen("txt_file/vote.txt", "w");
+     printf("All Vote.\n");
+    int size = V_count();
+    T_vote *all_vote[MAX_VOTE];
+    v_get_all(all_vote);
+    for (int i = 0; i < size; i++)
+    {
+        T_vote *p = all_vote[i];
+        fprintf(fp,"%s %d ", i + 1, v_getname(p), v_getamount(p));
+        for (int i = 0; i < v_getamount(p); i++)
+        {
+            fprintf(fp,"%s %d\n", v_getchoice(p, i),p->vote_box[i]);
         }
     }
     fclose(fp);

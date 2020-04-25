@@ -14,6 +14,7 @@ void list_vote();
 //////
 void start_vote(); //투표 시작
 void file_read();
+void file_save();
 
 int main(void)
 {
@@ -97,8 +98,11 @@ int main(void)
             //5. 투표하기
             //6. 현재 투표된 선택지 현황 전체 정리해서 보여주기     // 각 선택지에 투표된 수만 print한다.(익명) //나중에 실명 모드도 만들기
         }
-        else if (menu == 0) //exit
+        else if (menu == 0) //exit & file save
+        {
+            file_save();
             break;
+        }
     }
 }
 void create_user()
@@ -279,7 +283,7 @@ void list_vote()
 {
     printf("All Vote.\n");
     int size = V_count();
-    T_vote *all_vote[MAX_USER];
+    T_vote *all_vote[MAX_VOTE];
     v_get_all(all_vote);
     for (int i = 0; i < size; i++)
     {
@@ -305,15 +309,15 @@ void start_vote()
     else
     {
         char name[20];
-        printf("Enter a user name > ");
+        printf("유저 이름을 입력해주세요 > ");
         scanf("%s", name);
         if (u_search_by_name(name) == NULL)
         {
-            printf("No such user :(\n");
+            printf("유저를 찾지 못했습니다 :(\n");
         }
         else
         {
-            printf(":) Hello %s Would you vote?\n");
+            printf(":) Hello %s \n");
             T_vote *all_vote[MAX_USER];
             v_get_all(all_vote);
             for (int i = 0; i < size; i++)
@@ -322,7 +326,7 @@ void start_vote()
                 printf("%d. %s \n", i + 1, v_getname(p));
             }
             printf("0. Exit\n");
-            printf("\nChoose Vote : ");
+            printf("\nChoose Vote Number : ");
             scanf("%d", &choose);
             if(choose != 0)
             {
@@ -338,4 +342,9 @@ void file_read()
 {
     u_file_save();
     v_file_save();
+}
+void file_save()
+{
+    u_add_file();
+    // v_add_file();
 }

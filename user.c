@@ -59,7 +59,7 @@ void u_delete(T_user *p)
     {
         if (user[i] == p)
         {
-            index = 1;
+            index = i;
             break;
         }
     }
@@ -115,7 +115,7 @@ void u_file_save()
     char name[20];
     int age, gender;
     FILE *fp;
-    fp = fopen("txt_file/user.txt", "r");
+    fp = fopen("txt_file/user1.txt", "r");
     if (fp == NULL)
     {
         printf("파일 열기 오류");
@@ -126,6 +126,19 @@ void u_file_save()
         {
             u_create(name, age, gender);
         }
+    }
+    fclose(fp);
+}
+void u_add_file()
+{
+    FILE* fp = fopen("txt_file/user.txt","wt");
+    int size = U_count();
+    T_user *all_user[MAX_USER];
+    u_get_all(all_user);
+    for (int i = 0; i < size; i++)
+    {
+        T_user *p = all_user[i];
+        fprintf(fp,"%s %d %d\n", p->name, p->age, p->gender);
     }
     fclose(fp);
 }
