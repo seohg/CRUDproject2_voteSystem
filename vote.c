@@ -141,7 +141,7 @@ void v_file_save()
     char choice[30];
     int vote_box, amount;
     FILE *fp;
-    fp = fopen("txt_file/vote1.txt", "r");
+    fp = fopen("txt_file/vote.txt", "r");
     if (fp == NULL)
     {
         printf("파일 열기 오류");

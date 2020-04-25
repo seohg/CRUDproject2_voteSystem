@@ -115,7 +115,7 @@ void u_file_save()
     char name[20];
     int age, gender;
     FILE *fp;
-    fp = fopen("txt_file/user1.txt", "r");
+    fp = fopen("txt_file/user.txt", "r");
     if (fp == NULL)
     {
         printf("파일 열기 오류");
