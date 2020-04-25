@@ -10,7 +10,7 @@ typedef struct st_vote
     int amount; //선택지 갯수 
     char choice[MAX_VOTE_CHOISE][30];   // 선택지 저장
     int vote_box[MAX_VOTE_CHOISE];   //투표함(유저가 투표한것 저장하는 공간)
-    char vote_box_user[5][80];       //각 선택지에 투표한 유저 이름 저장
+    char vote_box_user[MAX_VOTE_CHOISE][80];       //각 선택지에 투표한 유저 이름 저장
 } T_vote;
 
 int available_vote();              //투표를 추가할 공간이 남아 있는가?
@@ -30,3 +30,5 @@ void v_get_all(T_vote *a[]);
 
 
 void v_start(T_vote *p,char name);
+
+void v_file_save();

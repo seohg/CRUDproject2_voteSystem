@@ -13,9 +13,12 @@ void list_user();
 void list_vote();
 //////
 void start_vote(); //투표 시작
+void file_read();
 
 int main(void)
 {
+    file_read();
+    //파일 읽어 드려 오기
     while (1)
     {
         int menu;
@@ -98,7 +101,6 @@ int main(void)
             break;
     }
 }
-
 void create_user()
 {
     char name[20];
@@ -117,6 +119,7 @@ void create_user()
             printf("Duplicated %s !\n", name);
             return;
         }
+        fprintf("%s",name);
         printf("age > ");
         scanf("%d", &age);
         printf("man(1) or woman(2) > ");
@@ -174,11 +177,11 @@ void read_vote()
     if (v_search_by_name(name) != NULL)
     {
         T_vote *p = v_search_by_name(name);
-        printf("Name > %s /", v_getname(p));
+        printf("%s /", v_getname(p));
         printf(" 선택지 > %d개\n", v_getamount(p));
         for (int i = 0; i < p->amount; i++)
         {
-            printf("%d. %s\n", i + 1, v_getchoice(p, i));
+            printf("%d. %s -> %d표\n", i + 1, v_getchoice(p, i),p->vote_box[i]);
         }
     }
     else
@@ -288,7 +291,6 @@ void list_vote()
         }
     }
 }
-
 void start_vote()
 {
     int size = V_count();
@@ -298,7 +300,7 @@ void start_vote()
     //6. 현재 투표된 선택지 현황 전체 정리해서 보여주기     // 각 선택지에 투표된 수만 print한다.(익명) //나중에 실명 모드도 만들기
     if (size == 0)  //1개라도 만들어진 투표 주제가 있는지 확인
     {
-        printf("Nothing to vote for :(\n");
+        printf("Nothing to vote :(\n");
     }
     else
     {
@@ -331,4 +333,9 @@ void start_vote()
             //투표하기
         }
     }
+}
+void file_read()
+{
+    u_file_save();
+    v_file_save();
 }
