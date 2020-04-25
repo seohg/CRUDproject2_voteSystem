@@ -169,19 +169,19 @@ void v_file_save()
 }
 void v_add_file()
 {
-    FILE *fp = fopen("txt_file/vote.txt", "w");
-     printf("All Vote.\n");
+    FILE *fp = fopen("txt_file/vote.txt", "wt");
     int size = V_count();
     T_vote *all_vote[MAX_VOTE];
     v_get_all(all_vote);
     for (int i = 0; i < size; i++)
     {
         T_vote *p = all_vote[i];
-        fprintf(fp,"%s %d ", i + 1, v_getname(p), v_getamount(p));
-        for (int i = 0; i < v_getamount(p); i++)
+        fprintf(fp,"%s %d ",p->name,p->amount);
+        for (int i = 0; i < p->amount; i++)
         {
-            fprintf(fp,"%s %d\n", v_getchoice(p, i),p->vote_box[i]);
+            fprintf(fp,"%s %d ", p->choice[i],p->vote_box[i]);
         }
+        fprintf(fp,"\n");
     }
     fclose(fp);
 }

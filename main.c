@@ -346,5 +346,5 @@ void file_read()
 void file_save()
 {
     u_add_file();
-    // v_add_file();
+    v_add_file();
 }
